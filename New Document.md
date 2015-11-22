@@ -185,3 +185,56 @@ xml前缀定义性地与命名空间名字http://www.w3.org/XML/1998/namespace�
 处理器不应该把它们当做致命错误。
 
 ##4.受限名
+
+在遵守此规范的文档中，一些名字（和非终结符名相对应）必须以以下定义的受限名的形式出现：
+
+受限名
+
+	[7]   	QName	   ::=   	PrefixedName
+								| UnprefixedName
+	[8]   	PrefixedName	   ::=   	Prefix ':' LocalPart
+	[9]   	UnprefixedName	   ::=   	LocalPart
+	[10]   	Prefix	   ::=   	NCName
+	[11]   	LocalPart	   ::=   	NCName
+
+prefix提供了受限名的命名空间前缀部分，且必须和某个命名空间中使用的URI引用相关联。[定义：localpart提供了受限名的本地部分]
+
+要注意的是前缀的作用仅是作为命名空间名字的占位符，应用程序在构造那些超出包含那些受限名的文档的作用范围的情况下使用的应该是命名空间名字而不是前缀。
+
+##5.使用受限名
+
+在遵守此规范的文档中，元素名必须以以下定义的受限名的形式出现：
+
+元素名
+
+	[12]   	STag	   ::=   	'<' QName (S Attribute)* S? '>' 	[NSC: Prefix Declared]
+	[13]   	ETag	   ::=   	'</' QName S? '>'	[NSC: Prefix Declared]
+	[14]   	EmptyElemTag	   ::=   	'<' QName (S Attribute)* S? '/>'	[NSC: Prefix Declared]
+
+一个使用受限名用作元素名的例子：
+	
+	  <!-- the 'price' element's namespace is http://ecommerce.example.org/schema -->
+	  <edi:price xmlns:edi='http://ecommerce.example.org/schema' units='Euro'>32.18</edi:price>
+
+属性或以命名空间声明形式，或以以下定义的受限名出现：
+
+属性
+	
+	[15]   	Attribute	   ::=   	NSAttName Eq AttValue
+				| QName Eq AttValue	[NSC: Prefix Declared]
+					[NSC: No Prefix Undeclaring]
+					[NSC: Attributes Unique]、
+
+一个使用受限名用作属性名的例子：
+
+	<x xmlns:edi='http://ecommerce.example.org/schema'>
+	  <!-- the 'taxClass' attribute's namespace is http://ecommerce.example.org/schema -->
+	  <lineItem edi:taxClass="exempt">Baby food</lineItem>
+	</x>
+
+命名空间约束：前缀声明
+
+命名空间前缀除了是xml或者xmlns的情况下，必须在使用该前缀的开始标签处的或者祖先元素的命名空间属性中已被声明。
+
+命名空间约束：无前缀声明
+
