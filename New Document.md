@@ -238,3 +238,20 @@ prefix提供了受限名的命名空间前缀部分，且必须和某个命名�
 
 命名空间约束：无前缀声明
 
+命名空间前缀（例如NSAttName匹配PrefixedAttName的时候）的属性值必须不能为空。
+
+这个约束可能是由外部实体声明的属性提供而不是直接在xml文档实体中提供的命名空间属性的而导致操作上的困难，这种声明可能对于基于未验证的XML处理程序的软件是不可读的。主要的xml应用程序，可能包括那些对命名空间敏感的，
+
+元素名和属性名在DTD的声明中也可以以受限名的形式出现。
+
+声明中的受限名
+
+	[16]   	doctypedecl	   ::=   	'<!DOCTYPE' S QName (S ExternalID)? S? ('[' (markupdecl | PEReference | S)* ']' S?)? '>'
+	[17]   	elementdecl	   ::=   	'<!ELEMENT' S QName S contentspec S? '>'
+	[18]   	cp	   ::=   	(QName | choice | seq) ('?' | '*' | '+')?
+	[19]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? QName)* S? ')*'
+				| '(' S? '#PCDATA' S? ')'
+	[20]   	AttlistDecl	   ::=   	'<!ATTLIST' S QName AttDef* S? '>'
+	[21]   	AttDef	   ::=   	S (QName | NSAttName) S AttType S DefaultDecl
+
+注意基于DTD的验证在以下情况下不是命名空间敏感的：一个DTD文档包含了可能以未解释的形式而不是以（命名空间名字，本地名字）组合出现在一个文档中元素和属性，
