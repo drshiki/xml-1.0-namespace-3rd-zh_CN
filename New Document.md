@@ -60,7 +60,7 @@ w3c维护一个与工作组交付物相关的公开专利信息列表，页面�
 
 6.2默认命名空间
 
-6.3唯一性属性
+6.3属性的唯一性
 
 7.文档一致性
 
@@ -255,3 +255,153 @@ prefix提供了受限名的命名空间前缀部分，且必须和某个命名�
 	[21]   	AttDef	   ::=   	S (QName | NSAttName) S AttType S DefaultDecl
 
 注意基于DTD的验证在以下情况下不是命名空间敏感的：一个DTD文档包含了可能以未解释的形式而不是以（命名空间名字，本地名字）组合出现在一个文档中元素和属性，
+
+##6.在元素与属性中应用命名空间
+
+###6.1命名空间作用域
+
+一个声明前缀的命名空间声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部的相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
+
+命名空间将作用于作用域内匹配它所声明的前缀的元素和和属性名。
+
+带前缀的元素和属性名相对应的拓展名把前缀绑定的URI作为命名空间名字，本地部分作为本地名字。
+
+	<?xml version="1.0"?>
+	
+	<html:html xmlns:html='http://www.w3.org/1999/xhtml'>
+	
+	  <html:head><html:title>Frobnostication</html:title></html:head>
+	  <html:body><html:p>Moved to 
+	    <html:a href='http://frob.example.com'>here.</html:a></html:p></html:body>
+	</html:html>
+
+同一个元素可以声明多个命名空间前缀，如下例：
+
+<?xml version="1.0"?>
+<!-- both namespace prefixes are available throughout -->
+<bk:book xmlns:bk='urn:loc.gov:books'
+         xmlns:isbn='urn:ISBN:0-395-36341-6'>
+    <bk:title>Cheaper by the Dozen</bk:title>
+    <isbn:number>1568491379</isbn:number>
+</bk:book>
+
+###6.2默认命名空间
+
+默认命名空间的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部的相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
+
+默认命名空间将作用于作用域内所有不带前缀的元素名，默认命名空间不直接作用于属性名，不带前缀的属性名的解析将由他们出现所在的元素所决定。
+
+处于默认命名空间作用域时，不带前缀的元素名相对应的拓展名把前缀绑定的URI作为命名空间名字，本地部分作为本地名字。如果处于一个没有默认命名空间的作用域内时，那么命名空间名字值为空，无前缀的属性名的命名空间名字值总是为空，在所有情况下，本地名字就是本地部分（也就是和无前缀名字自身）。
+
+	<?xml version="1.0"?>
+	<!-- elements are in the HTML namespace, in this case by default -->
+	<html xmlns='http://www.w3.org/1999/xhtml'>
+	  <head><title>Frobnostication</title></head>
+	  <body><p>Moved to 
+	    <a href='http://frob.example.com'>here</a>.</p></body>
+	</html>
+	
+	<?xml version="1.0"?>
+	<!-- unprefixed element types are from "books" -->
+	<book xmlns='urn:loc.gov:books'
+	      xmlns:isbn='urn:ISBN:0-395-36341-6'>
+	    <title>Cheaper by the Dozen</title>
+	    <isbn:number>1568491379</isbn:number>
+	</book>
+
+一个较复杂的命名空间作用域例子：
+
+	<?xml version="1.0"?>
+	<!-- initially, the default namespace is "books" -->
+	<book xmlns='urn:loc.gov:books'
+	      xmlns:isbn='urn:ISBN:0-395-36341-6'>
+	    <title>Cheaper by the Dozen</title>
+	    <isbn:number>1568491379</isbn:number>
+	    <notes>
+	      <!-- make HTML the default namespace for some commentary -->
+	      <p xmlns='http://www.w3.org/1999/xhtml'>
+	          This is a <i>funny</i> book!
+	      </p>
+	    </notes>
+	</book>
+
+默认命名空间声明中的属性值可以为空，这样具有相同的效果，在它的作用域内没用默认命名空间。
+
+	<?xml version='1.0'?>
+	<Beers>
+	  <!-- the default namespace inside tables is that of HTML -->
+	  <table xmlns='http://www.w3.org/1999/xhtml'>
+	   <th><td>Name</td><td>Origin</td><td>Description</td></th>
+	   <tr> 
+	     <!-- no default namespace inside table cells -->
+	     <td><brandName xmlns="">Huntsman</brandName></td>
+	     <td><origin xmlns="">Bath, UK</origin></td>
+	     <td>
+	       <details xmlns=""><class>Bitter</class><hop>Fuggles</hop>
+	         <pro>Wonderful hop, light alcohol, good summer beer</pro>
+	         <con>Fragile; excessive variance pub to pub</con>
+	         </details>
+	        </td>
+	      </tr>
+	    </table>
+	  </Beers>
+
+###6.3属性的唯一性
+
+命名空间约束：属性唯一
+
+在遵守此规范的文档内，所有标签不可以包含两个属性：
+
+1.具有相同的名字，或者
+
+2.具有受限名的相同的本地部分以及绑定到相同命名空间名字的前缀。
+
+这个约束等同于要求所有元素不可以具有两个相同扩展名的属性。
+
+如下，例子中全部空标签bad都是非法的
+
+	<!-- http://www.w3.org is bound to n1 and n2 -->
+	<x xmlns:n1="http://www.w3.org" 
+	   xmlns:n2="http://www.w3.org" >
+	  <bad a="1"     a="2" />
+	  <bad n1:a="1"  n2:a="2" />
+	</x>
+
+然而，下面的却全是合法的，第二个是因为默认命名空间并没有作用于属性名。
+
+	<!-- http://www.w3.org is bound to n1 and is the default -->
+	<x xmlns:n1="http://www.w3.org" 
+	   xmlns="http://www.w3.org" >
+	  <good a="1"     b="2" />
+	  <good a="1"     n1:a="2" />
+	</x>
+
+##7.文档一致性
+
+这份规范应用于xml1.0文档，一个符合此规范的文档必须是xml1.0中所定义的格式良好的文档。
+
+在遵守此规范的文档中，元素和属性名必须匹配Qname的产生式且满足所有命名空间约束，
+
+[定义：一个文档遵守此规范，那么这个文档就是命名空间格式良好的]
+
+命名空间有效的文档遵守以下：
+
+所有元素或者属性名包含0个或1个冒号
+
+没有任何实体名字，处理指令的目标，或者标识名字包含冒号。
+
+此外，一个命名空间格式良好的文档也可以是命名空间有效的文档
+
+##8.处理程序一致性
+
+一个遵守此规范的处理程序必须报告违反命名空间良构性的行为，不包括必须检查命名空间名字是不是一个URI引用[RFC3986]。
+
+[定义：一个合法的遵守此规范的xml处理程序如果额外提供了命名空间合法性报告，那么此程序是具备命名空阿验证的]。
+
+附录A：正式引用
+
+关键字：
+
+RFC2141：
+
+
