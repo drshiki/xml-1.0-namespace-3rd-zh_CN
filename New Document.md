@@ -1,6 +1,7 @@
 #XML1.0命名空间（第3版）
-##W3C推荐规范 2009年12月8日
+##W3C推荐标准 2009年12月8日
 此版本：
+
 [http://www.w3.org/TR/2009/REC-xml-names-20091208/](http://www.w3.org/TR/2009/REC-xml-names-20091208/)
 
 最新版本：
@@ -9,17 +10,19 @@
 以前的版本：
 [http://www.w3.org/TR/2006/REC-xml-names-20060816/](http://www.w3.org/TR/2009/PER-xml-names-20090806/)
 
-请参考此文档的勘误表，此上可能包含规范的修正
+请参考此文档的[勘误表](http://www.w3.org/XML/2009/xml-names-errata)，勘误表上可能包含了规范的修正。
 
-另请参阅译版
+另请参阅[译版](http://www.w3.org/2003/03/Translations/byTechnology?technology=xml-names)。
 
-亦提供此文档的非规范格式：XML版本和高亮显示相对第二版更新部分的HTML版本
+此文档的非规范格式：[XML版本](http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml)和[高亮相对第二版更新部分的HTML版本](http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e-diff.html)。
+
+<hr>
 
 ##摘要
-XML命名空间提供了一种简单的方式将可扩展标记文档中使用的标记和属性和以URI标识的命名空间联系起来以达到限制那些标记和属性的效果。
+XML命名空间提供了一种简单的方式将以URI引用标识的命名空间应用于可扩展标记文档中使用的标记和属性以达到限制的效果。
 
-##文档状态
-这一节描述了此文档出版时候的状态，其他文档可以能会替代此文档，直至当前w3c的出版列表以及相关的技术报告能够在http://www.w3.org/TR/的W3C技术报告索引中找到。
+##此文档状态
+这一节描述了此文档出版时的状态，其他文档可能会替代此文档，w3c的出版列表以及这份技术报告的最新版本能够在http://www.w3.org/TR/的[W3C技术报告索引](http://www.w3.org/TR/)上找到。
 
 此文档是w3c核心工作组的作为w3c xml活动的一个产品，英语版本是唯一的规范版本，其他的翻译版本请参阅http://www.w3.org/2003/03/Translations/byTechnology?technology=xml-names
 
