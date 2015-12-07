@@ -114,7 +114,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 **注：**
 
-弃用相对URI是W3C XML全体投票的结果[[弃用相对URI]](http://www.w3.org/TR/REC-xml-names/#reluri)，这也说明了以后的一些说明书例如DOM,xPath等等都不会对它们进行解析。
+弃用相对URI是W3C XML全体投票的结果[[弃用相对URI]](http://www.w3.org/TR/REC-xml-names/#reluri)，这也说明了以后的一些规范例如DOM,xPath等等都不会为它们定义解释。
 
 ###2.3 比较URI引用
 
@@ -148,28 +148,29 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 ##3 声明命名空间
 
-[定义：命名空间（或者更准确的说是命名空间绑定）是通过使用一族保留的属性去声明的，这些属性的名字必须是xmlns或者是以xmlns:的字符串，和其他属性一样，可以直接指定或者使用默认值]
+[定义：命名空间（或者更准确的说是命名空间绑定）通过使用一组保留的属性去声明，这些属性的名字必须是xmlns或者是以xmlns:的字符串，和其他属性一样，可以直接指定或者使用缺省值]
 
-命名空间声明中的属性命名规则
+命名空间声明中的属性命名
 
-	[1]   	NSAttName	   ::=   	PrefixedAttName
-									| DefaultAttName
-	[2]   	PrefixedAttName	   ::=   	'xmlns:' NCName	[NSC: 保留的前缀和命名空间名字]
-	[3]   	DefaultAttName	   ::=   	'xmlns'
-	[4]   	NCName	   ::=   	Name - (Char* ':' Char*)	/* 不带“:”的XML名字 */
+[1]   	NSAttName			::=		[PrefixedAttName](http://www.w3.org/TR/REC-xml-names/#NT-PrefixedAttName) | [DefaultAttName](http://www.w3.org/TR/REC-xml-names/#NT-DefaultAttName)
 
-此属性的规范化的值必须为任意一个URI引用-命名空间名字标识一个命名空间-或一个空字符串，命名空间应该具备唯一性和永久性使得它可以保证预期工作效果。它的目的不是直接用于检索模式（如果存在的话），统一资源命名是被设计成这种目的的一个语法例子，然而，原始URL可以通过这种方法管理去实现同样的目的。
+[2]   	PrefixedAttName		::=		'xmlns:' [NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)	[[NSC: 保留的前缀和命名空间名字]](http://www.w3.org/TR/REC-xml-names/#xmlReserved)
 
+[3]   	DefaultAttName		::=		'xmlns'
 
-[定义：如果属性名匹配PrefixedAttName，那么NCName部分将提供命名空间前缀，用于将命名空间声明所在的元素的作用域内的元素，属性名和命名空间声明中属性的规范值关联起来]
+[4]   	NCName				::=		[Name](http://www.w3.org/TR/REC-xml/#NT-Name) - ([Char](http://www.w3.org/TR/REC-xml/#NT-Char)* ':' [Char](http://www.w3.org/TR/REC-xml/#NT-Char)* )	/* 不带“:”的XML[名字](http://www.w3.org/TR/REC-xml/#NT-Name) */
 
-[定义：如果属性名匹配DefaultAttName，那么命名空间声明中属性的规范值就是自声明所在元素作用域内的默认命名空间]默认命名空间和覆盖声明将在6.在元素与属性中应用命名空间中讨论。
+此属性的[标准值](http://www.w3.org/TR/REC-xml/#AVNormalize)必须为一个URI引用——[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)标识一个命名空间——或一个空字符串，命名空间应该具备唯一性和永久性使得它可以保证预期工作效果。它的目的不是直接用于检索模式（如果存在的话），统一资源名[[RFC2141]](http://www.w3.org/TR/REC-xml-names/#URNs)是被设计成这种目的一个语法例子，然而，值得注意原始URL可以通过这种方法管理去实现同样的目标。
 
-命名空间声明的一个例子，将前缀edi和命名空间名字 http://ecommerce.example.org/schema相关联：
+[定义：如果属性名匹配[PrefixedAttName](http://www.w3.org/TR/REC-xml-names/#NT-DefaultAttName)，那么[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)部分将提供命名空间前缀，用于将命名空间声明所在的元素的作用域内的元素，属性名和命名空间声明中[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)属性的标准值关联起来。]
+
+[定义：如果属性名匹配[DefaultAttName](http://www.w3.org/TR/REC-xml-names/#NT-DefaultAttName)，那么[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)属性的标准值就是该声明所在元素的作用域内的**默认命名空间**.]默认命名空间和声明覆盖将在[6 在元素与属性中应用命名空间](http://www.w3.org/TR/REC-xml-names/#scoping-defaulting)中讨论。
+
+命名空间声明的一个例子，将前缀edi和命名空间名字http://ecommerce.example.org/schema相关联：
 
 	<x xmlns:edi='http://ecommerce.example.org/schema'>
 	  <!-- "edi" 前缀和http://ecommerce.example.org/schema绑定
-	       ”x“元素的内容 -->
+	       ”x“元素中的内容 -->
 	</x>
 
 **命名空间约束：保留的前缀和命名空间名字**
