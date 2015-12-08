@@ -169,36 +169,39 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 命名空间声明的一个例子，将前缀edi和命名空间名字http://ecommerce.example.org/schema相关联：
 
 	<x xmlns:edi='http://ecommerce.example.org/schema'>
-	  <!-- "edi" 前缀和http://ecommerce.example.org/schema绑定
-	       ”x“元素中的内容 -->
+	  <!-- “edi” 前缀和http://ecommerce.example.org/schema绑定
+	       “x”元素中的内容 -->
 	</x>
 
 **命名空间约束：保留的前缀和命名空间名字**
 
-xml前缀定义性地与命名空间名字http://www.w3.org/XML/1998/namespace绑定，它可以，但不需要被声明，且不允许绑定到任何其他命名空间名字，其它前缀也不允许绑定到这个命名空间名字，且它不可以被声明用作默认命名空间。
+定义规定XML前缀与命名空间名字http://www.w3.org/XML/1998/namespace绑定，它可以但不需要被声明，且不允许绑定到任何其他命名空间名字，其它前缀也不允许绑定到这个命名空间名字，它也不可以被声明用作默认命名空间。
 
-前缀xmlns定义性地仅被声明用作与命名空间名字 http://www.w3.org/2000/xmlns/绑定，它不允许被声明，其他的前缀不允许和这个命名空间名字绑定，且它不允许被声明用作默认命名空间，元素名中不允许包含此前缀。
+前缀xmlns仅能被用于命名空间绑定声明中且按照定义和命名空间名字 http://www.w3.org/2000/xmlns/绑定，它不允许被声明，其他的前缀不允许和这个命名空间名字绑定，且它不允许被声明用作默认命名空间，元素名中不允许包含xmlns前缀。
 
-任何以X，M，L（不区分大小写）这三个字母顺序开头的是保留名，这意味着，
+任何以x，m，l（不区分大小写）这三个字母顺序开头的前缀是保留的，这意味着：
 
-用户不应该使用它们，除非以后的说明书中有相关定义。
++ 用户不应该使用它们，除非后来的规范中有相关定义
 
-处理器不应该把它们当做致命错误。
++ 处理程序不允许把它们和致命错误一样处理
 
 ##4 受限名
 
-在遵守此规范的文档中，一些名字（和非终结符名相对应）必须以以下定义的受限名的形式出现：
+在遵守此规范的文档中，一些名字（的构造和非终结符[名字](http://www.w3.org/TR/REC-xml/#NT-Name)相对应）必须以[受限名](http://www.w3.org/TR/REC-xml-names/#dt-qualname)的形式给出，定义如下：
 
 受限名
 
-	[7]   	QName	   ::=   	PrefixedName
-								| UnprefixedName
-	[8]   	PrefixedName	   ::=   	Prefix ':' LocalPart
-	[9]   	UnprefixedName	   ::=   	LocalPart
-	[10]   	Prefix	   ::=   	NCName
-	[11]   	LocalPart	   ::=   	NCName
+[7]		QName		::=		[PrefixedName](http://www.w3.org/TR/REC-xml-names/#NT-PrefixedName) | [UnprefixedName](http://www.w3.org/TR/REC-xml-names/#NT-UnprefixedName)
 
-prefix提供了受限名的命名空间前缀部分，且必须和某个命名空间中使用的URI引用相关联。[定义：localpart提供了受限名的本地部分]
+[8]		PrefixedName		::=		[Prefix](http://www.w3.org/TR/REC-xml-names/#NT-Prefix) ':' [LocalPart](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)
+
+[9]		UnprefixedName		::=		[LocalPart](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)
+
+[10]	Prefix		::=		[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)
+
+[11]	LocalPart		::=		[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)
+
+[Prefix](http://www.w3.org/TR/REC-xml-names/#NT-Prefix)提供了受限名的[namespace prefix](http://www.w3.org/TR/REC-xml-names/#dt-prefix)部分，且必须在某个[命名空间声明](http://www.w3.org/TR/REC-xml-names/#dt-NSDecl)中和命名空间URI引用相关联。[定义：[LocalPart](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)提供了受限名的本地部分.]
 
 要注意的是前缀的作用仅是作为命名空间名字的占位符，应用程序在构造那些超出包含那些受限名的文档的作用范围的情况下使用的应该是命名空间名字而不是前缀。
 
