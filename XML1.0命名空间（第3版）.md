@@ -201,7 +201,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 [11]	LocalPart		::=		[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)
 
-[Prefix](http://www.w3.org/TR/REC-xml-names/#NT-Prefix)提供了受限名的[namespace prefix](http://www.w3.org/TR/REC-xml-names/#dt-prefix)部分，且必须在某个[命名空间声明](http://www.w3.org/TR/REC-xml-names/#dt-NSDecl)中和命名空间URI引用相关联。[定义：[LocalPart](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)提供了受限名的本地部分.]
+[Prefix](http://www.w3.org/TR/REC-xml-names/#NT-Prefix)提供了受限名的[namespace prefix](http://www.w3.org/TR/REC-xml-names/#dt-prefix)部分，且必须在某个[命名空间声明](http://www.w3.org/TR/REC-xml-names/#dt-NSDecl)中和命名空间URI引用相关联。[定义：[LocalPart](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)提供了受限名的本地部分。]
 
 要注意的是前缀的作用仅是作为命名空间名字的占位符，应用程序在构造那些超出包含那些受限名的文档的作用范围的情况下使用的应该是命名空间名字而不是前缀。
 
