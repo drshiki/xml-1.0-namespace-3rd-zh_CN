@@ -207,58 +207,61 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 ##5 使用受限名
 
-在遵守此规范的文档中，元素名必须以以下定义的受限名的形式出现：
+在遵守此规范的文档中，元素名以[受限名](http://www.w3.org/TR/REC-xml-names/#dt-qualname)的形式给出，如下：
 
 元素名
 
-	[12]   	STag	   ::=   	'<' QName (S Attribute)* S? '>' 	[NSC: Prefix Declared]
-	[13]   	ETag	   ::=   	'</' QName S? '>'	[NSC: Prefix Declared]
-	[14]   	EmptyElemTag	   ::=   	'<' QName (S Attribute)* S? '/>'	[NSC: Prefix Declared]
+[12]	STag	::=		'<' [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) ([S](http://www.w3.org/TR/REC-xml/#NT-S) [Attribute](http://www.w3.org/TR/REC-xml-names/#NT-Attribute))* S[?](http://www.w3.org/TR/REC-xml/#NT-S) '>'		[[NSC: Prefix Declared]](http://www.w3.org/TR/REC-xml-names/#nsc-NSDeclared)
+
+[13]	ETag	::=		'</' [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) [S](http://www.w3.org/TR/REC-xml/#NT-S)? '>'	[[NSC: Prefix Declared]](http://www.w3.org/TR/REC-xml-names/#nsc-NSDeclared)
+
+[14]	EmptyElemTag	::=		'<' [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) ([S](http://www.w3.org/TR/REC-xml/#NT-S) [Attribute](http://www.w3.org/TR/REC-xml-names/#NT-Attribute))* [S](http://www.w3.org/TR/REC-xml/#NT-S)? '/>'	[[NSC: Prefix Declared]](http://www.w3.org/TR/REC-xml-names/#nsc-NSDeclared)
 
 一个使用受限名用作元素名的例子：
 	
-	  <!-- the 'price' element's namespace is http://ecommerce.example.org/schema -->
+	  <!-- 'price' 元素的命名空间是 http://ecommerce.example.org/schema -->
 	  <edi:price xmlns:edi='http://ecommerce.example.org/schema' units='Euro'>32.18</edi:price>
 
-属性或以命名空间声明形式，或以以下定义的受限名出现：
+属性以命名空间声明或以下定义的受限名的形式出现：
 
 属性
 	
-	[15]   	Attribute	   ::=   	NSAttName Eq AttValue
-				| QName Eq AttValue	[NSC: Prefix Declared]
-					[NSC: No Prefix Undeclaring]
-					[NSC: Attributes Unique]、
+[15]	Attribute	::=		[NSAttName](http://www.w3.org/TR/REC-xml-names/#NT-NSAttName) [Eq](http://www.w3.org/TR/REC-xml/#NT-Eq) [AttValue](http://www.w3.org/TR/REC-xml/#NT-AttValue) | [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) [Eq](http://www.w3.org/TR/REC-xml/#NT-Eq) [AttValue](http://www.w3.org/TR/REC-xml/#NT-AttValue)	[[NSC: Prefix Declared]](http://www.w3.org/TR/REC-xml-names/#nsc-NSDeclared)	[[NSC: No Prefix Undeclaring]](http://www.w3.org/TR/REC-xml-names/#nsc-NoPrefixUndecl)	[[NSC: Attributes Unique]](http://www.w3.org/TR/REC-xml-names/#nsc-AttrsUnique)
 
 一个使用受限名用作属性名的例子：
 
 	<x xmlns:edi='http://ecommerce.example.org/schema'>
-	  <!-- the 'taxClass' attribute's namespace is http://ecommerce.example.org/schema -->
+	  <!-- 'taxClass'属性的命名空间是 http://ecommerce.example.org/schema -->
 	  <lineItem edi:taxClass="exempt">Baby food</lineItem>
 	</x>
 
-命名空间约束：前缀声明
+**命名空间约束：前缀声明**
 
-命名空间前缀除了是xml或者xmlns的情况下，必须在使用该前缀的开始标签处的或者祖先元素的命名空间属性中已被声明。
+命名空间前缀除了是xml或者xmlns的情况下，必须在使用该前缀的开始标签处或者祖先元素的命名空间声明属性中被声明（例如：一个元素在另一个带前缀的标记的内容中）。
 
-命名空间约束：无前缀声明
+**命名空间约束：无前缀声明**
 
-命名空间前缀（例如NSAttName匹配PrefixedAttName的时候）的属性值必须不能为空。
+在带[前缀](http://www.w3.org/TR/REC-xml-names/#NT-Prefix)的[命名空间声明](http://www.w3.org/TR/REC-xml-names/#dt-NSDecl)中（例如[NSAttName](http://www.w3.org/TR/REC-xml-names/#NT-NSAttName)匹配[PrefixedAttName](http://www.w3.org/TR/REC-xml-names/#NT-NSAttName)的时候），属性值不允许为空。
 
-这个约束可能是由外部实体声明的属性提供而不是直接在xml文档实体中提供的命名空间属性的而导致操作上的困难，这种声明可能对于基于未验证的XML处理程序的软件是不可读的。主要的xml应用程序，可能包括那些对命名空间敏感的，
+这个约束可能在外部实体声明的默认属性提供命名空间声明属性而不是直接由XML[文档实体](http://www.w3.org/TR/REC-xml/#dt-docent)提供而导致操作上的困难，这种声明可能对于那些基于不带验证功能的XML处理程序的软件是不可读的。主要的XML应用程序，包括那些命名空间敏感的在内，未能请求带验证的处理程序，如果这类应用程序必需正确的操作，那么命名空间声明必须通过直接或者[DTD内部子集](http://www.w3.org/TR/REC-xml/#dt-doctype)的默认声明属性提供。
 
-元素名和属性名在DTD的声明中也可以以受限名的形式出现。
+元素名和属性名在[DTD](http://www.w3.org/TR/REC-xml/#dt-doctype)的声明中也以受限名的形式给出：
 
 声明中的受限名
 
-	[16]   	doctypedecl	   ::=   	'<!DOCTYPE' S QName (S ExternalID)? S? ('[' (markupdecl | PEReference | S)* ']' S?)? '>'
-	[17]   	elementdecl	   ::=   	'<!ELEMENT' S QName S contentspec S? '>'
-	[18]   	cp	   ::=   	(QName | choice | seq) ('?' | '*' | '+')?
-	[19]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? QName)* S? ')*'
-				| '(' S? '#PCDATA' S? ')'
-	[20]   	AttlistDecl	   ::=   	'<!ATTLIST' S QName AttDef* S? '>'
-	[21]   	AttDef	   ::=   	S (QName | NSAttName) S AttType S DefaultDecl
+[16]	doctypedecl		::=		'<!DOCTYPE' [S](http://www.w3.org/TR/REC-xml/#NT-S) [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) ([S](http://www.w3.org/TR/REC-xml/#NT-S) [ExternalID](http://www.w3.org/TR/REC-xml/#NT-ExternalID))? [S](http://www.w3.org/TR/REC-xml/#NT-S)? ('[' ([markupdecl](http://www.w3.org/TR/REC-xml/#NT-markupdecl) | [PEReference](http://www.w3.org/TR/REC-xml/#NT-PEReference) | [S](http://www.w3.org/TR/REC-xml/#NT-S))* ']' [S](http://www.w3.org/TR/REC-xml/#NT-S)?)? '>'
 
-注意基于DTD的验证在以下情况下不是命名空间敏感的：一个DTD文档包含了可能以未解释的形式而不是以（命名空间名字，本地名字）组合出现在一个文档中元素和属性，
+[17]	elementdecl		::=		'<!ELEMENT' [S](http://www.w3.org/TR/REC-xml/#NT-S) [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) [S](http://www.w3.org/TR/REC-xml/#NT-S) [contentspec](http://www.w3.org/TR/REC-xml/#NT-contentspec) [S](http://www.w3.org/TR/REC-xml/#NT-S)? '>'
+
+[18]	cp		::=		([QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) | [choice](http://www.w3.org/TR/REC-xml/#NT-choice) | [seq](http://www.w3.org/TR/REC-xml/#NT-seq)) ('?' | '*' | '+')?
+
+[19]	Mixed		::=		'(' [S](http://www.w3.org/TR/REC-xml/#NT-S)? '#PCDATA' ([S](http://www.w3.org/TR/REC-xml/#NT-S)? '|' [S](http://www.w3.org/TR/REC-xml/#NT-S)? [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName))* [S](http://www.w3.org/TR/REC-xml/#NT-S)? ')*' | '(' [S](http://www.w3.org/TR/REC-xml/#NT-S)? '#PCDATA' [S](http://www.w3.org/TR/REC-xml/#NT-S)? ')'
+
+[20]	AttlistDecl	   ::=		'<!ATTLIST' [S](http://www.w3.org/TR/REC-xml/#NT-S) [QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) [AttDef](http://www.w3.org/TR/REC-xml-names/#NT-AttDef)* [S](http://www.w3.org/TR/REC-xml/#NT-S)? '>'
+
+[21]	AttDef	   ::=		[S](http://www.w3.org/TR/REC-xml/#NT-S) ([QName](http://www.w3.org/TR/REC-xml-names/#NT-QName) | [NSAttName](http://www.w3.org/TR/REC-xml-names/#NT-NSAttName)) [S](http://www.w3.org/TR/REC-xml/#NT-S) [AttType](http://www.w3.org/TR/REC-xml/#NT-AttType) [S](http://www.w3.org/TR/REC-xml/#NT-S) [DefaultDecl](http://www.w3.org/TR/REC-xml/#NT-DefaultDecl)
+
+注意基于DTD的验证在以下情况下不是命名空间敏感的：一个DTD文档包含了可能以未解释的形式而不是以（命名空间名字，本地名字）组合形式出现的元素和属性。使用命名空间验证一份文档导致违反DTD，相同的前缀必须在DTD中像在一个实例中使用一样。DTD可能通过给命名空间声明属性提供#FIXED值而间接包含一份合法文档使用的命名空间。
 
 ##6.在元素与属性中应用命名空间
 
