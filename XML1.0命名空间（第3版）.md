@@ -267,11 +267,11 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 ###6.1命名空间作用域
 
-一个声明前缀的命名空间声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部的相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
+一个声明前缀的命名空间声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部使用相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
 
-命名空间将作用于作用域内匹配它所声明的前缀的元素和和属性名。
+命名空间声明应用于作用域内那些前缀匹配声明中使用的前缀的元素和和属性名。
 
-带前缀的元素和属性名相对应的拓展名把前缀绑定的URI作为命名空间名字，本地部分作为本地名字。
+和带前缀的元素和属性名相对应的[拓展名](http://www.w3.org/TR/REC-xml-names/#dt-expname)使用[前缀](http://www.w3.org/TR/REC-xml-names/#NT-Prefix)绑定的URI作为它的[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)，[本地部分](http://www.w3.org/TR/REC-xml-names/#NT-LocalPart)作为[本地名字](http://www.w3.org/TR/REC-xml-names/#dt-localname)。
 
 	<?xml version="1.0"?>
 	
@@ -284,24 +284,24 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 同一个元素可以声明多个命名空间前缀，如下例：
 
-<?xml version="1.0"?>
-<!-- both namespace prefixes are available throughout -->
-<bk:book xmlns:bk='urn:loc.gov:books'
-         xmlns:isbn='urn:ISBN:0-395-36341-6'>
-    <bk:title>Cheaper by the Dozen</bk:title>
-    <isbn:number>1568491379</isbn:number>
-</bk:book>
+	<?xml version="1.0"?>
+	<!-- both namespace prefixes are available throughout -->
+	<bk:book xmlns:bk='urn:loc.gov:books'
+	         xmlns:isbn='urn:ISBN:0-395-36341-6'>
+	    <bk:title>Cheaper by the Dozen</bk:title>
+	    <isbn:number>1568491379</isbn:number>
+	</bk:book>
 
 ###6.2默认命名空间
 
-默认命名空间的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部的相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
+[默认命名空间](http://www.w3.org/TR/REC-xml-names/#dt-defaultNS)声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部使用相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
 
-默认命名空间将作用于作用域内所有不带前缀的元素名，默认命名空间不直接作用于属性名，不带前缀的属性名的解析将由他们出现所在的元素所决定。
+默认命名空间声明应用于作用域内所有不带前缀的元素名，默认命名空间不直接作用于属性名，不带前缀的属性名的解析将由它们出现所在的元素决定。
 
-处于默认命名空间作用域时，不带前缀的元素名相对应的拓展名把前缀绑定的URI作为命名空间名字，本地部分作为本地名字。如果处于一个没有默认命名空间的作用域内时，那么命名空间名字值为空，无前缀的属性名的命名空间名字值总是为空，在所有情况下，本地名字就是本地部分（也就是和无前缀名字自身）。
+如果在作用域内有默认命名空间时，不带前缀的元素名相对应的拓展名把[默认命名空间](http://www.w3.org/TR/REC-xml-names/#dt-defaultNS)的URI作为[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)，本地部分作为本地名字。如果作用域内没有默认命名空间声明，那么命名空间名字值为空，无前缀的属性名的命名空间名字值总是为空，在所有情况下，本地名字就是本地部分（也就是和无前缀名字自身一样）。
 
 	<?xml version="1.0"?>
-	<!-- elements are in the HTML namespace, in this case by default -->
+	<!-- 元素在HTML命名空间内，以默认命名空间的形式 -->
 	<html xmlns='http://www.w3.org/1999/xhtml'>
 	  <head><title>Frobnostication</title></head>
 	  <body><p>Moved to 
@@ -309,7 +309,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 	</html>
 	
 	<?xml version="1.0"?>
-	<!-- unprefixed element types are from "books" -->
+	<!-- 无前缀元素命名空间继承于 "books" -->
 	<book xmlns='urn:loc.gov:books'
 	      xmlns:isbn='urn:ISBN:0-395-36341-6'>
 	    <title>Cheaper by the Dozen</title>
@@ -319,13 +319,13 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 一个较复杂的命名空间作用域例子：
 
 	<?xml version="1.0"?>
-	<!-- initially, the default namespace is "books" -->
+	<!--  最初默认命名空间是 "books" -->
 	<book xmlns='urn:loc.gov:books'
 	      xmlns:isbn='urn:ISBN:0-395-36341-6'>
 	    <title>Cheaper by the Dozen</title>
 	    <isbn:number>1568491379</isbn:number>
 	    <notes>
-	      <!-- make HTML the default namespace for some commentary -->
+	      <!-- 使HTML成为默认命名空间-->
 	      <p xmlns='http://www.w3.org/1999/xhtml'>
 	          This is a <i>funny</i> book!
 	      </p>
@@ -336,11 +336,11 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 	<?xml version='1.0'?>
 	<Beers>
-	  <!-- the default namespace inside tables is that of HTML -->
+	  <!-- 默认命名空间是 HTML -->
 	  <table xmlns='http://www.w3.org/1999/xhtml'>
 	   <th><td>Name</td><td>Origin</td><td>Description</td></th>
 	   <tr> 
-	     <!-- no default namespace inside table cells -->
+	     <!-- 在表单元格内没有默认命名空间 -->
 	     <td><brandName xmlns="">Huntsman</brandName></td>
 	     <td><origin xmlns="">Bath, UK</origin></td>
 	     <td>
@@ -357,17 +357,17 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 命名空间约束：属性唯一
 
-在遵守此规范的文档内，所有标签不可以包含两个属性：
+在遵守此规范的文档内，所有标签不可以包含两个以下描述的属性：
 
-1.具有相同的名字，或者
+1. 具有相同的名字，或者
 
-2.具有受限名的相同的本地部分以及绑定到相同命名空间名字的前缀。
+2. 具有受限名的相同[本地部分](http://www.w3.org/TR/REC-xml-names/#dt-localpart)以及绑定到[相同](http://www.w3.org/TR/REC-xml-names/#dt-identical)[命名空间名字](http://www.w3.org/TR/REC-xml-names/#dt-NSName)的[前缀](http://www.w3.org/TR/REC-xml-names/#dt-prefix)。
 
-这个约束等同于要求所有元素不可以具有两个相同扩展名的属性。
+这个约束等同于要求所有元素不可以具有两个相同[扩展名](http://www.w3.org/TR/REC-xml-names/#dt-expname)的属性。
 
 如下，例子中全部空标签bad都是非法的
 
-	<!-- http://www.w3.org is bound to n1 and n2 -->
+	<!-- http://www.w3.org 分别和n1，n2绑定 -->
 	<x xmlns:n1="http://www.w3.org" 
 	   xmlns:n2="http://www.w3.org" >
 	  <bad a="1"     a="2" />
@@ -376,7 +376,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 然而，下面的却全是合法的，第二个是因为默认命名空间并没有作用于属性名。
 
-	<!-- http://www.w3.org is bound to n1 and is the default -->
+	<!-- http://www.w3.org和n1绑定，并且作为默认命名空间 -->
 	<x xmlns:n1="http://www.w3.org" 
 	   xmlns="http://www.w3.org" >
 	  <good a="1"     b="2" />
