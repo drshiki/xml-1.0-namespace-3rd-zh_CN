@@ -285,7 +285,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 同一个元素可以声明多个命名空间前缀，如下例：
 
 	<?xml version="1.0"?>
-	<!-- both namespace prefixes are available throughout -->
+	<!-- 两个命名空间都贯穿文档 -->
 	<bk:book xmlns:bk='urn:loc.gov:books'
 	         xmlns:isbn='urn:ISBN:0-395-36341-6'>
 	    <bk:title>Cheaper by the Dozen</bk:title>
