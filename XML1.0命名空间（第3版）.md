@@ -407,26 +407,26 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 ##8.处理程序一致性
 
-一个遵守此规范的处理程序必须报告违反命名空间良构性的行为，不包括必须检查命名空间名字是不是一个URI引用[RFC3986]。
+一个遵守此规范的处理程序必须报告违反命名空间良构性的行为，除了不必需检查命名空间名字是不是一个URI引用[[RFC3986]](http://www.w3.org/TR/REC-xml-names/#URIRef)之外。
 
-[定义：一个合法的遵守此规范的xml处理程序如果额外提供了命名空间合法性报告，那么此程序是具备命名空阿验证的]。
+[定义：一个遵守此规范的合法的XML处理程序如果额外提供了命名空间合法性报告，那么此程序是命名空间有效的。]
 
 ##附录A：正式引用
 
-关键字：
-RFC 2119: Key words for use in RFCs to Indicate Requirement Levels, S. Bradner, ed. IETF (Internet Engineering Task Force), March 1997. Available at http://www.rfc-editor.org/rfc/rfc2119.txt 
+关键字
+[RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](http://www.rfc-editor.org/rfc/rfc2119.txt), S. Bradner, ed. IETF (Internet Engineering Task Force), March 1997. Available at http://www.rfc-editor.org/rfc/rfc2119.txt 
 
 RFC2141
-    RFC 2141: URN Syntax, R. Moats, ed. IETF (Internet Engineering Task Force), May 1997. Available at http://www.rfc-editor.org/rfc/rfc2141.txt. 
+[RFC 2141: URN Syntax](http://www.rfc-editor.org/rfc/rfc2141.txt), R. Moats, ed. IETF (Internet Engineering Task Force), May 1997. Available at http://www.rfc-editor.org/rfc/rfc2141.txt. 
 
 RFC3986
-    RFC 3986: Uniform Resource Identifier (URI): Generic Syntax, T. Berners-Lee, R. Fielding, and L. Masinter, eds. IETF (Internet Engineering Task Force), January 2005. Available at http://www.rfc-editor.org/rfc/rfc3986.txt 
+[RFC 3986: Uniform Resource Identifier (URI): Generic Syntax](http://www.rfc-editor.org/rfc/rfc3986.txt), T. Berners-Lee, R. Fielding, and L. Masinter, eds. IETF (Internet Engineering Task Force), January 2005. Available at http://www.rfc-editor.org/rfc/rfc3986.txt 
 
 RFC3629
-    RFC 3629: UTF-8, a transformation format of ISO 10646, F. Yergeau, ed. IETF (Internet Engineering Task Force), November 2003. Available at http://www.rfc-editor.org/rfc/rfc3629.txt 
+[RFC 3629: UTF-8, a transformation format of ISO 10646](http://www.rfc-editor.org/rfc/rfc3629.txt), F. Yergeau, ed. IETF (Internet Engineering Task Force), November 2003. Available at http://www.rfc-editor.org/rfc/rfc3629.txt 
 
 XML
-    Extensible Markup Language (XML) 1.0, Tim Bray, Jean Paoli, C. M. Sperberg-McQueen, Eve Maler, and François Yergeau eds. W3C (World Wide Web Consortium). Available at http://www.w3.org/TR/REC-xml/. 
+[Extensible Markup Language (XML) 1.0](http://www.w3.org/TR/REC-xml/), Tim Bray, Jean Paoli, C. M. Sperberg-McQueen, Eve Maler, and François Yergeau eds. W3C (World Wide Web Consortium). Available at http://www.w3.org/TR/REC-xml/. 
 
 ##B 其他非正式应用(非正式)
 
