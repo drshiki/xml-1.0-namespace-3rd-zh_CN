@@ -411,7 +411,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 [定义：一个遵守此规范的合法的XML处理程序如果额外提供了命名空间合法性报告，那么此程序是命名空间有效的。]
 
-##附录A：正式引用
+##附录A：规范引用
 
 关键字
 [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](http://www.rfc-editor.org/rfc/rfc2119.txt), S. Bradner, ed. IETF (Internet Engineering Task Force), March 1997. Available at http://www.rfc-editor.org/rfc/rfc2119.txt 
@@ -428,24 +428,26 @@ RFC3629
 XML
 [Extensible Markup Language (XML) 1.0](http://www.w3.org/TR/REC-xml/), Tim Bray, Jean Paoli, C. M. Sperberg-McQueen, Eve Maler, and François Yergeau eds. W3C (World Wide Web Consortium). Available at http://www.w3.org/TR/REC-xml/. 
 
-##B 其他非正式应用(非正式)
+##B 其他引用（非规范）
 
 1.0 Errata
-    Namespaces in XML Errata. W3C (World Wide Web Consortium). Available at http://www.w3.org/XML/xml-names-19990114-errata. 
+[Namespaces in XML Errata](http://www.w3.org/XML/xml-names-19990114-errata). W3C (World Wide Web Consortium). Available at http://www.w3.org/XML/xml-names-19990114-errata. 
 
 1.0 2e Errata
-    Namespaces in XML (Second Edition) Errata. W3C (World Wide Web Consortium). Available at http://www.w3.org/XML/2006/xml-names-errata. 
+[Namespaces in XML (Second Edition) Errata](http://www.w3.org/XML/2006/xml-names-errata). W3C (World Wide Web Consortium). Available at http://www.w3.org/XML/2006/xml-names-errata. 
 
 Relative URI deprecation
-    Results of W3C XML Plenary Ballot on relative URI References In namespace declarations 3-17 July 2000, Dave Hollander and C. M. Sperberg-McQueen, 6 September 2000. Available at http://www.w3.org/2000/09/xppa. 
+[Results of W3C XML Plenary Ballot on relative URI References In namespace declarations 3-17 July 2000](http://www.w3.org/2000/09/xppa), Dave Hollander and C. M. Sperberg-McQueen, 6 September 2000. Available at http://www.w3.org/2000/09/xppa. 
 
-##C xml命名空间内部结构(非正式)
+##C XML命名空间内部结构(非规范)
 
 此附录已删除
 
-##D自版本1.0以来的改变（非正式）
+##D 自版本1.0以来的改变（非正式）
 
-此版本包含了直至2009年七月20日的勘误表内容[1.0 Errata] [1.0 2e Errata]. 
+此版本包含了直至2009年七月20日的勘误表内容[[1.0 Errata]](http://www.w3.org/TR/REC-xml-names/#errata10)[[1.0 2e Errata]](http://www.w3.org/TR/REC-xml-names/#errata10.2)。 
+
+
 
 ##E致谢（非正式）
 
