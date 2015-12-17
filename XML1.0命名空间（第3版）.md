@@ -411,7 +411,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 [定义：一个遵守此规范的合法的XML处理程序如果额外提供了命名空间合法性报告，那么此程序是命名空间有效的。]
 
-##附录A：规范引用
+##A 规范引用
 
 关键字
 [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](http://www.rfc-editor.org/rfc/rfc2119.txt), S. Bradner, ed. IETF (Internet Engineering Task Force), March 1997. Available at http://www.rfc-editor.org/rfc/rfc2119.txt 
@@ -443,17 +443,17 @@ Relative URI deprecation
 
 此附录已删除
 
-##D 自版本1.0以来的改变（非正式）
+##D 自版本1.0以来的改变（非规范）
 
 此版本包含了直至2009年七月20日的勘误表内容[[1.0 Errata]](http://www.w3.org/TR/REC-xml-names/#errata10)[[1.0 2e Errata]](http://www.w3.org/TR/REC-xml-names/#errata10.2)。 
 
+几个编辑的变化，包含大量的术语变化以及另外一些增强一致性的变化，非规范引用“XML命名空间内部结构”已被移除，BNF已被调整为正确地与XML1.0的所有版本连接，包括第四版。
 
+##E 致谢（非规范）
 
-##E致谢（非正式）
+此工作反映了大量人员的贡献，特别是W3C的XML工作组团体的参与以及特别兴趣小组和w3c元数据活动的参与，来自微软的Charles Frankston的贡献也是非常有价值的。
 
-此工作反映了大量的人员的贡献，特别是w3c的xml工作组团体的参与以及特别兴趣小组和w3c元数据活动的参与，来自微软的Charles Frankston的贡献也是非常有价值的。
-
-##F独立作品（非正式）
+##F 独立作品（非规范）
 
 以下两个产品是现在这份规范的已修改后的最初两个版本，他们不再使用，放在此处以便此规范相互参考未标明日期的版本。
 
