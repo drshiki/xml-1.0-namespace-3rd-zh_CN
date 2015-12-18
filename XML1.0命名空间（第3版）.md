@@ -455,11 +455,13 @@ Relative URI deprecation
 
 ##F 独立作品（非规范）
 
-以下两个产品是现在这份规范的已修改后的最初两个版本，他们不再使用，放在此处以便此规范相互参考未标明日期的版本。
+以下是在这份规范的最先两个版本提出的两个产生式的修改版本，它们不再被使用，放在此处以便此规范的未注明版本跨页引用。
 
-因为xml1.0的字母表最初使用的NCNameStartChar自xml1.0第四版后已经不再使用，NCNameStartChar在所有版本的xml规范中都被改作NCName.
+因为XML1.0中的的Letter产生式最初在NCNameStartChar的定义中被使用，但自XML1.0第四版后不在作为定义名字的恰当的基础，NCNameStartChar产生式定义不利于所有版本的XML所以已经被修改使用[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)定义至正确的结果。
 
-	[5]   	NCNameChar	   ::=   	NameChar - ':' /* An XML NameChar, minus the ":" */
-	[6]   	NCNameStartChar	   ::=   	NCName - ( Char Char Char* ) /* The first letter of an NCName */
+[5]		NCNameChar		::=		[NameChar](http://www.w3.org/TR/REC-xml/#NT-NameChar) - ':' /* 一个XML [NameChar](http://www.w3.org/TR/REC-xml/#NT-NameChar), 去掉":" */
+
+[6]		NCNameStartChar		::=		[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName) - ( [Char](http://www.w3.org/TR/REC-xml/#NT-Char) [Char](http://www.w3.org/TR/REC-xml/#NT-Char) [Char](http://www.w3.org/TR/REC-xml/#NT-Char)* ) /* [NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)的第一个字母 */
+
 
  
