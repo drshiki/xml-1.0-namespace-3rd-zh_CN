@@ -1,5 +1,5 @@
-#XML1.0命名空间（第3版）
-##W3C推荐标准 2009年12月8日
+# XML1.0命名空间（第3版）
+## W3C推荐标准 2009年12月8日
 此版本：
 [http://www.w3.org/TR/2009/REC-xml-names-20091208/](http://www.w3.org/TR/2009/REC-xml-names-20091208/)
 
@@ -17,10 +17,10 @@
 
 <hr>
 
-##摘要
+## 摘要
 XML命名空间提供了一种简单的方式将以URI引用标识的命名空间应用于可扩展标记文档中使用的标记和属性以达到限制的效果。
 
-##此文档状态
+## 此文档状态
 这一节描述了此文档出版时的状态，其他文档可能会替代此文档，w3c的出版列表以及这份技术报告的最新版本能够在http://www.w3.org/TR/ 的 [W3C技术报告索引](http://www.w3.org/TR/)上找到。
 
 此文档作为[W3C核心工作组](http://www.w3.org/XML/Core/)的[W3C XML 活动](http://www.w3.org/XML/Activity.html)的一部分，英语版本是唯一的规范版本，其他的译版请参阅[http://www.w3.org/2003/03/Translations/byTechnology?technology=xml-names](http://www.w3.org/2003/03/Translations/byTechnology?technology=xml-names)。
@@ -37,7 +37,7 @@ W3C成员，软件开发者，以及其他W3C工作组和感兴趣的团体已�
 
 W3C维护一个与工作组交付物相关的[公开专利信息列表](http://www.w3.org/2002/08/xmlcore-IPR-statements)，实际对专利[基本要求](http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential)事项知情的个人必须和[W3C专利政策第6节](http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure)保持一致公开信息。
 
-##目录
+## 目录
 1 目的和概要
 
 1.1 符号与使用
@@ -68,7 +68,7 @@ W3C维护一个与工作组交付物相关的[公开专利信息列表](http://w
 
 8 处理程序一致性
 
-##附录
+## 附录
 A 规范引用
 
 B 其他引用（非规范）
@@ -81,14 +81,14 @@ E 鸣谢（非规范）
 
 F 独立产品（非规范）
 
-##1 目的和概要
+## 1 目的和概要
 我们预想到在XML的应用当中，一个XML文档中可能包含为多个软件模块定义的和使用的元素和属性（此处指“标记词汇”），此目标之一是确保模块化：复用那些在软件中易于理解和使用的词汇比重新发明新词更好。
 
 对于那些包含多个词汇表而导致识别和冲突问题的文档。软件模块需要具备在其它软件包使用了相同元素名和属性名而导致“冲突”的情况下识别那些被设计成应该被处理的元素和属性的能力。
 
 这些考虑要求文档构造机制需要具有名字构造机制以避免多个标记词汇表之间的命名冲突，这份规范描述了一种给元素和属性名指定拓展名来解决这些问题的机制——XML命名空间。
 
-###1.1 符号和使用
+### 1.1 符号和使用
 
 在本文档强调时，使用关键字，必须，不允许，必需，应该，不应该，可以将按照[[Keywords]](http://www.w3.org/TR/REC-xml-names/#keywords)中的定义去解释。
 
@@ -96,9 +96,9 @@ F 独立产品（非规范）
 
 在此文档的产生式中，NSC是指一个“命名空间约束”，是遵守此规范的文档必须遵守的规则之一。
 
-##2 XML命名空间
+## 2 XML命名空间
 
-###2.1 基本概念
+### 2.1 基本概念
 
 [定义：一个命名空间通过一个URI引用[[RFC3986]](http://www.w3.org/TR/REC-xml-names/#URIRef)标识，应用此文档所描述的机制，元素和属性名可以放置于XML命名空间内。]
 
@@ -106,7 +106,7 @@ F 独立产品（非规范）
 
 URI引用可能包含不允许在命名中使用的字符，并且大多情况下冗长导致不便，所以拓展名并不在XML文档的元素和属性命名中直接被使用，而是使用[受限名](http://www.w3.org/TR/REC-xml-names/#dt-qualname)。[定义：一个受限名被作为一个命名空间去解析。]在遵守此规范的文档中，元素和属性名以受限名的形式出现，在句法构成上分为带前缀和不带前缀的形式。前缀和命名空间之间的绑定以及无前缀的元素名中使用的默认命名空间的绑定通过一种基于属性的声明句法来实现，这些声明作用于它们出现的元素上，所以文档中的不同部分可能使用不同的绑定。在遵守此文档中的处理程序中，这些声明和前缀必须能被识别和发生作用。
 
-###2.2使用URI作为命名空间名字
+### 2.2使用URI作为命名空间名字
 
 尽管空字符串是一个合法的URI引用，但是不可以作为一个命名空间名字。
 
@@ -116,7 +116,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 弃用相对URI是W3C XML全体投票的结果[[弃用相对URI]](http://www.w3.org/TR/REC-xml-names/#reluri)，这也说明了以后的一些规范例如DOM,xPath等等都不会为它们定义解释。
 
-###2.3 比较URI引用
+### 2.3 比较URI引用
 
 在判断一个名字是否属于所指定的命名空间或者判断两个名字是否属于同一个命名空间的时候将发生URI标识的命名空间的比较。
 
@@ -146,7 +146,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 为了避免和上述URI解引用时指向同样的资源的情况混淆，强烈反对在命名空间命名中使用转义字符。
 
-##3 声明命名空间
+## 3 声明命名空间
 
 [定义：命名空间（或者更准确的说是命名空间绑定）通过使用一组保留的属性去声明，这些属性的名字必须是xmlns或者是以xmlns:的字符串，和其他属性一样，可以直接指定或者使用缺省值]
 
@@ -185,7 +185,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 + 处理程序不允许把它们和致命错误一样处理
 
-##4 受限名
+## 4 受限名
 
 在遵守此规范的文档中，一些名字（的构造和非终结符[名字](http://www.w3.org/TR/REC-xml/#NT-Name)相对应）必须以[受限名](http://www.w3.org/TR/REC-xml-names/#dt-qualname)的形式给出，定义如下：
 
@@ -205,7 +205,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 要注意的是前缀的作用仅是作为命名空间名字的占位符，应用程序在构造那些超出包含那些受限名的文档的作用范围的情况下使用的应该是命名空间名字而不是前缀。
 
-##5 使用受限名
+## 5 使用受限名
 
 在遵守此规范的文档中，元素名以[受限名](http://www.w3.org/TR/REC-xml-names/#dt-qualname)的形式给出，如下：
 
@@ -263,9 +263,9 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 注意基于DTD的验证在以下情况下不是命名空间敏感的：一个DTD文档包含了可能以未解释的形式而不是以（命名空间名字，本地名字）组合形式出现的元素和属性。使用命名空间验证一份文档导致违反DTD，相同的前缀必须在DTD中像在一个实例中使用一样。DTD可能通过给命名空间声明属性提供#FIXED值而间接包含一份合法文档使用的命名空间。
 
-##6.在元素与属性中应用命名空间
+## 6.在元素与属性中应用命名空间
 
-###6.1命名空间作用域
+### 6.1命名空间作用域
 
 一个声明前缀的命名空间声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部使用相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
 
@@ -292,7 +292,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 	    <isbn:number>1568491379</isbn:number>
 	</bk:book>
 
-###6.2默认命名空间
+### 6.2默认命名空间
 
 [默认命名空间](http://www.w3.org/TR/REC-xml-names/#dt-defaultNS)声明的作用域从它出现的开始标签起直到对应的结束标签，不包括任何内部使用相同的NSAttName声明的作用域，在空标签的情况下，作用域就是他自身。
 
@@ -353,7 +353,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 	    </table>
 	  </Beers>
 
-###6.3属性的唯一性
+### 6.3属性的唯一性
 
 命名空间约束：属性唯一
 
@@ -383,7 +383,7 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 	  <good a="1"     n1:a="2" />
 	</x>
 
-##7.文档一致性
+## 7.文档一致性
 
 这份规范应用于XML	1.0文档，一个遵守此规范的文档同时必须是XML1.0中所定义的格式良好的文档。
 
@@ -405,13 +405,13 @@ URI引用可能包含不允许在命名中使用的字符，并且大多情况�
 
 + 所有声明为ID, IDREF(S), ENTITY(IES), 或者NOTATION类型的属性不包含任何的冒号。
 
-##8.处理程序一致性
+## 8.处理程序一致性
 
 一个遵守此规范的处理程序必须报告违反命名空间良构性的行为，除了不必需检查命名空间名字是不是一个URI引用[[RFC3986]](http://www.w3.org/TR/REC-xml-names/#URIRef)之外。
 
 [定义：一个遵守此规范的合法的XML处理程序如果额外提供了命名空间合法性报告，那么此程序是命名空间有效的。]
 
-##A 规范引用
+## A 规范引用
 
 关键字
 [RFC 2119: Key words for use in RFCs to Indicate Requirement Levels](http://www.rfc-editor.org/rfc/rfc2119.txt), S. Bradner, ed. IETF (Internet Engineering Task Force), March 1997. Available at http://www.rfc-editor.org/rfc/rfc2119.txt 
@@ -428,7 +428,7 @@ RFC3629
 XML
 [Extensible Markup Language (XML) 1.0](http://www.w3.org/TR/REC-xml/), Tim Bray, Jean Paoli, C. M. Sperberg-McQueen, Eve Maler, and François Yergeau eds. W3C (World Wide Web Consortium). Available at http://www.w3.org/TR/REC-xml/. 
 
-##B 其他引用（非规范）
+## B 其他引用（非规范）
 
 1.0 Errata
 [Namespaces in XML Errata](http://www.w3.org/XML/xml-names-19990114-errata). W3C (World Wide Web Consortium). Available at http://www.w3.org/XML/xml-names-19990114-errata. 
@@ -439,21 +439,21 @@ XML
 Relative URI deprecation
 [Results of W3C XML Plenary Ballot on relative URI References In namespace declarations 3-17 July 2000](http://www.w3.org/2000/09/xppa), Dave Hollander and C. M. Sperberg-McQueen, 6 September 2000. Available at http://www.w3.org/2000/09/xppa. 
 
-##C XML命名空间内部结构(非规范)
+## C XML命名空间内部结构(非规范)
 
 此附录已删除
 
-##D 自版本1.0以来的改变（非规范）
+## D 自版本1.0以来的改变（非规范）
 
 此版本包含了直至2009年七月20日的勘误表内容[[1.0 Errata]](http://www.w3.org/TR/REC-xml-names/#errata10)[[1.0 2e Errata]](http://www.w3.org/TR/REC-xml-names/#errata10.2)。 
 
 几个编辑的变化，包含大量的术语变化以及另外一些增强一致性的变化，非规范引用“XML命名空间内部结构”已被移除，BNF已被调整为正确地与XML1.0的所有版本连接，包括第四版。
 
-##E 致谢（非规范）
+## E 致谢（非规范）
 
 此工作反映了大量人员的贡献，特别是W3C的XML工作组团体的参与以及特别兴趣小组和w3c元数据活动的参与，来自微软的Charles Frankston的贡献也是非常有价值的。
 
-##F 独立作品（非规范）
+## F 独立作品（非规范）
 
 以下是在这份规范的最先两个版本提出的两个产生式的修改版本，它们不再被使用，放在此处以便此规范的未注明版本跨页引用。
 
@@ -462,6 +462,10 @@ Relative URI deprecation
 [5]		NCNameChar		::=		[NameChar](http://www.w3.org/TR/REC-xml/#NT-NameChar) - ':' /* 一个XML [NameChar](http://www.w3.org/TR/REC-xml/#NT-NameChar), 去掉":" */
 
 [6]		NCNameStartChar		::=		[NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName) - ( [Char](http://www.w3.org/TR/REC-xml/#NT-Char) [Char](http://www.w3.org/TR/REC-xml/#NT-Char) [Char](http://www.w3.org/TR/REC-xml/#NT-Char)* ) /* [NCName](http://www.w3.org/TR/REC-xml-names/#NT-NCName)的第一个字母 */
+
+**注：**
+
+产生式[NC-NCNameStartChar](https://www.w3.org/TR/REC-xml-names/#NT-NCNameStartChar)利用一个单字符的NCName必定是一个NCNameStartChar这一事实，通过从任意长度的NCNames的集合中减去长度为两个和多于两个字符的NCNames的集合,只留下一个字符长度的NCNames来定义。
 
 
  
